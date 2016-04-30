@@ -1,0 +1,12 @@
+<li>
+  <div class="result-container">
+    {{#if truck.status}}
+      <i class="result-icon fa fa-clock-o open"></i>
+    {{else}}
+      <i class="result-icon fa fa-clock-o"></i>
+    {{/if}}
+    {{#link-to 'map.panel.truck' truck.id (query-params search='')}}
+      <div class="result">{{truck.name}}</div>
+    {{/link-to}}
+  </div>
+</li>

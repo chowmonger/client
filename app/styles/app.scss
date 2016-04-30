@@ -1,0 +1,429 @@
+@import "bourbon";
+@import "base/base";
+@import "neat";
+@import "switch";
+@import "shake";
+
+$large-screen: 860px !default;
+$small-screen: 480px !default;
+
+body {
+  margin: 0;
+}
+
+.group {
+  @include align-items(stretch);
+  @include display(flex);
+  @include flex-direction(column);
+  @include justify-content(space-between);
+
+  .group-row {
+    @include align-items(baseline);
+    @include display(flex);
+    @include flex-direction(row);
+    @include justify-content(space-between);
+
+    .group-seventy {
+      @include flex-basis(70%);
+    }
+
+    .group-twenty {
+      @include flex-basis(20%);
+    }
+
+    .group-ten {
+      @include flex-basis(10%);
+      text-align: center;
+    }
+
+    span.col-name {
+      color: #666;
+      font-size: 0.8em;
+      font-weight: 600;
+    }
+  }
+
+  .fa-plus, .fa-times {
+    cursor: pointer;
+  }
+
+  .disabled {
+    color: #ddd;
+    cursor: not-allowed;
+  }
+}
+
+form {
+  @include align-items(stretch);
+  @include display(flex);
+  @include flex-direction(column);
+  @include justify-content(space-between);
+
+  .no-margin > label {
+    margin-bottom: 0;
+  }
+
+  .no-margin {
+    margin-bottom: 0;
+  }
+
+  label#currency {
+    position: absolute;
+    top: 5px;
+    font-weight: 400;
+  }
+
+  input#currency-input {
+    transform: translate(10px,0);
+  }
+
+  label {
+    @include flex-basis(fill);
+    position: relative;
+    margin-bottom: 1em;
+
+    input {
+      border: 0 !important;
+      box-shadow: none !important;
+      border-radius: 0;
+      transition: none;
+      background-color: rgba(255,255,255,0);
+      padding: 0.5em 0 0 0 !important;
+    }
+
+    input:focus {
+      border-bottom: solid 1px #ddd;
+    }
+
+    input, div {
+      & + span {
+        top: -1em;
+      }
+
+      & + i {
+        top: 0em;
+      }
+    }
+
+    span {
+      color: #666;
+      font-size: 0.8em;
+      position: absolute;
+      left: 0px;
+    }
+
+    i.inline {
+      color: #666;
+      font-size: 1em;
+      position: absolute;
+      right: 0;
+      padding-right: 0 !important;
+    }
+  }
+
+  #address {
+    padding: 0.5em 0 0.5em 0;
+  }
+}
+
+.panel {
+  top: 0;
+  right: 0;
+  z-index: 5;
+  position: absolute;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin: 2vw;
+
+  @include media(480px) {
+    margin: 1vh 1vh 0px 1vh;
+  }
+
+  #cog {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    cursor: pointer;
+
+    i {
+      display: block;
+      padding: 16px 8px 16px 16px;
+    }
+  }
+
+  #search {
+    background: #fff;
+    position: relative;
+    padding: 8px 100px 16px 40px;
+    width: 96vw;
+    height: 48px;
+    box-sizing: border-box;
+
+    @include media(480px) {
+      width: 25vw;
+      min-width: 480px;
+    }
+
+    input#sb {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+
+  a {
+    color: black;
+  }
+
+  .search-icon-container {
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .search-icon {
+      display: block;
+      padding: 16px 16px;
+    }
+
+    .fa-times {
+      cursor: pointer;
+    }
+  }
+
+}
+
+#results-box {
+  top: 48px;
+  right: 0;
+  z-index: 5;
+  position: absolute;
+  margin: 2vw;
+  text-align: left;
+
+  a {
+    color: black;
+  }
+
+  @include media(480px) {
+    margin: 1vh 1vh 0px 1vh;
+  }
+
+  #results {
+    width: 96vw;
+    overflow: hidden;
+    border-radius: 0 0 2px 2px;
+
+    @include media(480px) {
+      width: 25vw;
+      min-width: 480px;
+    }
+
+    ul {
+      li {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        margin: 3px;
+        background: #fff;
+        display: list-item;
+        text-align: left;
+
+        .result-container {
+          position: relative;
+          line-height: 16px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          border-top: 1px solid #eee;
+          text-align: left;
+        }
+
+        .result-icon {
+          margin: 0 18px 0 16px;
+          float: left;
+          color: rgba(150,0,0,1);
+        }
+
+        .open {
+          color: rgba(0,150,0,1);
+        }
+
+        .result {
+          @include ellipsis(80%);
+        }
+      }
+    }
+  }
+}
+
+.pane {
+  z-index: 2;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  width: 96vw;
+  margin: 1.5vh 1vh 0px 1vh;
+  overflow-y: auto;
+
+  @include media(480px) {
+    width: 25vw;
+    margin: 1.5vh 1vh 0px 1vh;
+    min-width: 480px;
+  }
+
+  button {
+    border: solid 1px #ddd;
+    background: white;
+    color: black;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button:hover {
+    border: solid 1px black;
+  }
+
+  .button-icon {
+    position: relative;
+    z-index: 5;
+    padding-left: 4px;
+  }
+
+  .input-icon {
+    float: right;
+    margin-right: 15px;
+    margin-top: -38px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .truck-pane-image {
+    position: relative;
+    z-index: 3;
+    width: auto;
+    height: 100%;
+    min-height: 200px;
+    margin-bottom: -0.5em;
+  }
+
+  .pane-title {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: #fff;
+    position: relative;
+    margin: 0.8vh 0 0 0;
+    z-index: 4;
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+
+    h1 {
+      font-size: 18px;
+    }
+
+  }
+
+  .no-margin {
+    margin: 0;
+  }
+
+  .pane-details {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: #fff;
+    position: relative;
+    //padding: 1em 0.5em 1em 0.5em;
+    padding: 1em 16px 1em 16px;
+    margin: 0.2vh 0 0 0;
+    z-index: 4;
+
+    i {
+      padding: 8px;
+    }
+
+    span {
+      display: inline;
+    }
+
+    .menu-items {
+      display: block;
+
+      .float-right {
+        float: right;
+      }
+    }
+  }
+
+  .truck-pane-menu-title {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: #fff;
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    padding: 10px;
+    height: 40px;
+
+    h1 {
+      font-size: 18px;
+    }
+  }
+
+  .truck-pane-menu {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: #fff;
+    margin: 0.2vh 0 0 0;
+    position: relative;
+    z-index: 4;
+    padding: 10px;
+  }
+
+
+  .settings {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: #fff;
+    position: relative;
+    padding: 10px;
+    margin: 0.2vh 0 0 0;
+    z-index: 4;
+
+    i {
+      padding: 8px;
+    }
+  }
+
+  .account {
+
+    .fa-user {
+      padding-right: 20px;
+    }
+
+    .fa-truck {
+      padding-right: 18px;
+    }
+
+    .fa-sign-out {
+      cursor: pointer;
+    }
+
+    .float-right {
+      float: right;
+      padding-right: 6px;
+    }
+
+    .input-icon {
+      float: right;
+      margin-right: 15px;
+      margin-top: -38px;
+      position: relative;
+      z-index: 5;
+    }
+  }
+}
+
+.pane-button {
+  margin: 0.8vh 0 0.8vh 0;
+}
+
+.leaflet-container {
+  z-index: 1;
+  height: 100vh;
+}

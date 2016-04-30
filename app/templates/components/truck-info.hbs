@@ -1,0 +1,17 @@
+<div class="truck-pane-image">
+  {{async-image src=(if truck.image truck.image)}}
+</div>
+
+{{#content-pane title=truck.name}}
+  {{truck-details truck=truck}}
+{{/content-pane}}
+
+{{#if truck.menuItems}}
+  {{#content-pane title="Menu"}}
+    <div class="menu-items group">
+    {{#each truck.menuItems as |m|}}
+      {{menu-item name=m.name price=m.formattedPrice}}
+    {{/each}}
+    </div>
+  {{/content-pane}}
+{{/if}}

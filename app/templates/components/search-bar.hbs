@@ -1,0 +1,13 @@
+<div id="cog">
+  <i class="fa fa-cogs" {{action (route-action "settings")}}></i>
+</div>
+<div id="search">
+  {{input focus-in=(route-action "focused")
+          escape-press=(route-action "clearName")
+          value=search id="sb"
+          placeholder="Search trucks..."
+  }}
+</div>
+<div class="search-icon-container">
+  <i class="search-icon fa fa-times" {{action (route-action "clearName")}}></i>
+</div>

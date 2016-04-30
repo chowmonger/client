@@ -1,0 +1,28 @@
+<div class="pane-title no-margin">
+{{#each flashMessages.queue as |flash|}}
+    <h1>
+      {{flash-message flash=flash class="shake"}}
+    </h1>
+{{else}}
+    <h1>Register</h1>
+{{/each}}
+</div>
+
+<form {{action 'register' on='submit'}}>
+  <div class="pane-details">
+      <label>
+        {{input class="no-margin" value=user.email placeholder='Email'}}
+        <i class="fa fa-envelope inline"></i>
+      </label>
+      <label>
+        {{input class="no-margin" value=user.password placeholder='Password' type='password'}}
+        <i class="fa fa-key inline"></i>
+      </label>
+      Have an account? Login {{#link-to 'map.panel.settings.login'}}here{{/link-to}}.
+  </div>
+
+  <button class="pane-button" type="submit">
+    Register
+    <span class="fa fa-user-plus button-icon"></span>
+  </button>
+</form>

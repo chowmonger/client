@@ -25,6 +25,25 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.HOST_URL = 'http://localhost:4000';
+    ENV.TOKEN_URL= 'http://localhost:4000/api/v1/token';
+    ENV.REGISTER_URL = 'http://localhost:4000/api/v1/users';
+    ENV.SOCKET_URL = 'ws://localhost:4000/socket';
+    ENV.ADDRESS_URL= 'http://localhost:4000/api/v1/address';
+
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    },
+    ENV.contentSecurityPolicy = {
+      'connect-src': ["'self'", "http://localhost:4000"]
+    },
+    ENV['simple-auth'] = {
+      authorizer: 'authorizer:custom',
+      crossOriginWhitelist: ['http://localhost:4000/'],
+      authenticationRoute: 'map.panel.settings.login',
+      routeAfterAuthentication: 'map.panel.settings.manage',
+      routeIfAlreadyAuthenticated: 'map.panel.settings.manage'
+    }
   }
 
   if (environment === 'test') {
@@ -40,7 +59,22 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.contentSecurityPolicy = {
+      'connect-src': ["'self'", "https://chowmonger-api.herokuapp.com"]
+    },
+    ENV['simple-auth'] = {
+      authorizer: 'authorizer:custom',
+      crossOriginWhitelist: ['https://chowmonger-api.herokuapp.com'],
+      authenticationRoute: 'map.panel.settings.login',
+      routeAfterAuthentication: 'map.panel.settings.manage',
+      routeIfAlreadyAuthenticated: 'map.panel.settings.manage'
+    }
 
+    ENV.HOST_URL = 'https://chowmonger-api.herokuapp.com';
+    ENV.TOKEN_URL= 'https://chowmonger-api.herokuapp.com/api/v1/token';
+    ENV.REGISTER_URL= 'https://chowmonger-api.herokuapp.com/api/v1/users';
+    ENV.SOCKET_URL = 'wss://chowmonger-api.herokuapp.com/socket';
+    ENV.ADDRESS_URL= 'https://chowmonger-api.herokuapp.com/api/v1/address';
   }
 
   return ENV;

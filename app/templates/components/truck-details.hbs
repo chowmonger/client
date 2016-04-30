@@ -1,0 +1,21 @@
+<ul>
+  <li><i class="fa fa-clock-o"></i>
+    <span>
+      {{if truck.status "Open" "Closed"}}
+    </span>
+  </li>
+  {{#if truck.categories.length}}
+  <li><i class="fa fa-cutlery"></i>
+    <span>
+      {{#each truck.categories as |c index|}}
+      {{if index ", "}}{{c}}
+      {{/each}}
+    </span>
+  </li>
+  {{/if}}
+  {{#if truck.status}}
+    <li><i class="fa fa-map-marker"></i>
+      <span>{{truck.address}}</span>
+    </li>
+  {{/if}}
+</ul>

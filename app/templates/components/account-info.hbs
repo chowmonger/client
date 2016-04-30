@@ -1,0 +1,16 @@
+<div class="settings">
+  <div class="account">
+    <i class="fa fa-user"></i>{{sessionAccount.currentUser.formattedName}}
+    {{#link-to 'map.panel.settings.manage.account'}}
+    <i class="fa fa-cog float-right"></i>
+    {{/link-to}}
+    <i class="fa fa-sign-out float-right" {{action 'invalidateSession'}}></i>
+    {{#if sessionAccount.currentUser.truck}}
+    <br>
+    <i class="fa fa-truck"></i>{{sessionAccount.currentUser.truck.name}}
+    {{#link-to 'map.panel.settings.manage.truck'}}
+    <i class="fa fa-cog float-right"></i>
+    {{/link-to}}
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="panel">
+  {{search-bar search=search
+               focused=(route-action "focused")
+               clearName=(route-action "clearName")
+               settings=(route-action "settings")
+  }}
+</div>
+
+<div id="results-box">
+  <div id="results">
+    <ul>
+      {{#each model as |truck|}}
+        {{search-result truck=truck}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div class="pane">
+  {{outlet}}
+</div>

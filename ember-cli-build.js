@@ -5,6 +5,20 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
+    hinting: false,
+    sassOptions: {
+      includePaths: [
+        'bower_components/bourbon/app/assets/stylesheets',
+        'bower_components/neat/app/assets/stylesheets'
+      ]
+    },
+    fingerprint: {
+      exclude: [
+        'images/marker-icon-2x.png',
+        'images/marker-icon.png',
+        'images/marker-shadow.png'
+      ]
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

@@ -1,0 +1,10 @@
+<div class="menu-item group-row">
+  {{#if hasBlock}}
+    <span class="group-seventy">{{name}}</span>
+    <span class="group-twenty">{{price}}</span>
+    {{yield}}
+  {{else}}
+    <span class="group-seventy">{{name}}</span>
+    <span class="group-ten">{{price}}</span>
+  {{/if}}
+</div>

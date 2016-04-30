@@ -1,0 +1,64 @@
+{{#content-pane title="Edit Truck"}}
+  <form>
+    <label>
+      {{input value=truck.name}}
+      <span>Name</span>
+    </label>
+    <label>
+      <div class="switch-container">
+        <label class="switch">
+          {{input type="checkbox" name="status" checked=truck.status}}
+          <div></div>
+        </label>
+      </div>
+      <span>Open?</span>
+    </label>
+    <label>
+      <div id="address">{{truck.address}}</div>
+      <span>Address (drag marker!)</span>
+    </label>
+  </form>
+{{/content-pane}}
+
+{{#content-pane title="Menu"}}
+  <div class="menu-items group">
+    <div class="group-row">
+      <span class="col-name group-seventy">Name</span>
+      <span class="col-name group-twenty">Price</span>
+      <span class="col-name group-ten">Action</span>
+    </div>
+
+    {{#each truck.menuItems as |m|}}
+      {{#unless m.isDeleted}}
+        {{#menu-item name=m.name
+                    price=m.formattedPrice
+        }}
+        <i class="fa fa-times group-ten" {{action 'deleteMenuItem' m}}></i>
+        {{/menu-item}}
+      {{/unless}}
+    {{/each}}
+
+    <form>
+      <div class="group-row no-margin">
+        <label class="group-seventy">
+          {{input value=newItemName placeholder="Hot Dog"}}
+        </label>
+        <label class="group-twenty">
+          <label id="currency">$</label>
+          {{input id="currency-input" value=newItemPrice placeholder="3.75"}}
+        </label>
+        <label class="group-ten">
+          {{#if isAddMenuItemDisabled}}
+            <i class="fa fa-plus disabled"></i>
+          {{else}}
+            <i class="fa fa-plus" {{action 'addMenuItem' truck}}></i>
+          {{/if}}
+        </label>
+      </div>
+    </form>
+  </div>
+{{/content-pane}}
+
+<button class="pane-button" type="submit" {{action 'save' truck}}>
+  Save
+</button>
