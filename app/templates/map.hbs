@@ -1,5 +1,5 @@
 {{#leaflet-map lat=lat lng=lng zoom=zoom dragging=true zoomControl=false}}
-  {{tile-layer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
+  {{tile-layer url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"}}
 
   {{#each model as |truck|}}
     {{#if truck.status}}
